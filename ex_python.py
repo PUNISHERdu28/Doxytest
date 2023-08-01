@@ -1,69 +1,160 @@
 # -----------------------------------------------------------------------------
-# Fonction : square
-# Description : Calcule le carré d'un nombre.
+# Fonction : add
+# Description : Effectue l'addition de deux nombres.
 # Paramètres :
-#     - number (int/float) : Le nombre dont on veut calculer le carré.
+#     - num1 (int/float) : Le premier nombre.
+#     - num2 (int/float) : Le second nombre.
 # Retour :
-#     - int/float : Le carré du nombre.
+#     - int/float : Le résultat de l'addition.
+# Exceptions :
+#     - ValueError : Si l'un des paramètres n'est pas un nombre.
 # -----------------------------------------------------------------------------
-def square(number):
+def add(num1, num2):
     """
-    Calcule le carré d'un nombre.
+    Effectue l'addition de deux nombres.
 
-    @param number: Le nombre dont on veut calculer le carré.
-    @type number: int ou float
+    Cette fonction prend deux nombres (int ou float) en entrée et renvoie le résultat de l'addition.
+    Si l'un des paramètres n'est pas un nombre valide, une exception ValueError est levée.
 
-    @return: Le carré du nombre.
-    @rtype: int ou float
+    Args:
+        num1 (int or float): Le premier nombre.
+        num2 (int or float): Le second nombre.
+
+    Returns:
+        int or float: Le résultat de l'addition.
+
+    Raises:
+        ValueError: Si l'un des paramètres n'est pas un nombre valide.
     """
-    return number * number
+    if not isinstance(num1, (int, float)) or not isinstance(num2, (int, float)):
+        raise ValueError("Les paramètres doivent être des nombres (int ou float).")
+    return num1 + num2
 
 
 # -----------------------------------------------------------------------------
-# Classe : Person
-# Description : Représente une personne avec son nom et son âge.
+# Classe : Rectangle
+# Description : Représente un rectangle avec sa largeur et sa hauteur.
 # -----------------------------------------------------------------------------
-class Person:
+class Rectangle:
     """
-    Représente une personne avec son nom et son âge.
+    Représente un rectangle avec sa largeur et sa hauteur.
+
+    Cette classe définit une représentation basique d'un rectangle avec sa largeur et sa hauteur.
+    Elle peut être utilisée pour effectuer des calculs de surface et de périmètre.
 
     Attributes:
-        name (str): Le nom de la personne.
-        age (int): L'âge de la personne.
+        width (int/float): La largeur du rectangle.
+        height (int/float): La hauteur du rectangle.
     """
 
-    def __init__(self, name, age):
+    def __init__(self, width, height):
         """
-        Initialise une nouvelle instance de la classe Person.
+        Initialise une nouvelle instance de la classe Rectangle.
 
-        @param name: Le nom de la personne.
-        @type name: str
+        Cette méthode permet de créer un nouvel objet de la classe Rectangle en fournissant une largeur et une hauteur.
 
-        @param age: L'âge de la personne.
-        @type age: int
+        Args:
+            width (int or float): La largeur du rectangle.
+            height (int or float): La hauteur du rectangle.
         """
-        self.name = name
-        self.age = age
+        self.width = width
+        self.height = height
 
-    def greet(self):
+    def area(self):
         """
-        Affiche un message de salutation pour la personne.
+        Calcule la surface du rectangle.
+
+        Returns:
+            int/float: La surface du rectangle.
         """
-        print(f"Bonjour, je m'appelle {self.name} et j'ai {self.age} ans.")
+        return self.width * self.height
+
+    def perimeter(self):
+        """
+        Calcule le périmètre du rectangle.
+
+        Returns:
+            int/float: Le périmètre du rectangle.
+        """
+        return 2 * (self.width + self.height)
 
 
 # -----------------------------------------------------------------------------
-# Fonction principale pour tester les exemples de balises Doxygen.
+# Fonction : is_prime
+# Description : Vérifie si un nombre est premier.
+# Paramètres :
+#     - num (int) : Le nombre à vérifier.
+# Retour :
+#     - bool : True si le nombre est premier, False sinon.
 # -----------------------------------------------------------------------------
-if __name__ == "__main__":
+def is_prime(num):
     """
-    Fonction principale pour tester les exemples de balises Doxygen.
-    """
-    # Créer une personne et afficher un message de salutation
-    person = Person("Alice", 30)
-    person.greet()
+    Vérifie si un nombre est premier.
 
-    # Calculer le carré d'un nombre et l'afficher
-    number = 5
-    squared = square(number)
-    print(f"Le carré de {number} est {squared}.")
+    Cette fonction prend un nombre entier en entrée et vérifie s'il est premier.
+    Un nombre premier est un nombre entier supérieur à 1 et qui n'a aucun diviseur autre que 1 et lui-même.
+
+    Args:
+        num (int): Le nombre à vérifier.
+
+    Returns:
+        bool: True si le nombre est premier, False sinon.
+    """
+    if num <= 1:
+        return False
+    for i in range(2, int(num**0.5) + 1):
+        if num % i == 0:
+            return False
+    return True
+
+
+# -----------------------------------------------------------------------------
+# Classe : Point
+# Description : Représente un point dans un espace 2D.
+# -----------------------------------------------------------------------------
+class Point:
+    """
+    Représente un point dans un espace 2D.
+
+    Cette classe définit une représentation d'un point dans un espace 2D avec ses coordonnées x et y.
+    Elle peut être utilisée pour effectuer des opérations géométriques simples.
+
+    Attributes:
+        x (int/float): La coordonnée x du point.
+        y (int/float): La coordonnée y du point.
+    """
+
+    def __init__(self, x, y):
+        """
+        Initialise une nouvelle instance de la classe Point.
+
+        Cette méthode permet de créer un nouvel objet de la classe Point en fournissant des coordonnées x et y.
+
+        Args:
+            x (int or float): La coordonnée x du point.
+            y (int or float): La coordonnée y du point.
+        """
+        self.x = x
+        self.y = y
+
+    def distance_to_origin(self):
+        """
+        Calcule la distance du point à l'origine (0, 0).
+
+        Returns:
+            float: La distance du point à l'origine.
+        """
+        return (self.x**2 + self.y**2)**0.5
+
+
+# -----------------------------------------------------------------------------
+# Variables globales
+# -----------------------------------------------------------------------------
+PI = 3.14159
+MAX_ITERATIONS = 100
+DEFAULT_WIDTH = 10
+DEFAULT_HEIGHT = 5.5
+name = "John Doe"
+age = 30
+temperature = 25.5
+is_raining = True
